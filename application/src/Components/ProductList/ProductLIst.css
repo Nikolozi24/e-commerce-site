@@ -1,0 +1,15 @@
+div.product-list{
+    background-color: aqua;
+
+}
+div.product-list>ul.product-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-row: 4;
+    grid-column:span;
+}
+div.product-list>ul.product-list>li{
+    background-color: bisque;
+    margin: 3px 4px;
+    list-style-type: none;
+}
