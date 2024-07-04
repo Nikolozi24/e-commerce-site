@@ -1,0 +1,34 @@
+
+ul.Product-component{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style-type: none;
+    background-color: rgb(255, 255, 255);
+    border-bottom:1px solid grey ;
+    width: 200px;
+    padding: 20px;
+    height: 400px;
+}
+ul.Product-component:hover{
+    transition: all 2s ease-in-out;
+    transform: rotateY(360deg);
+  overflow: hidden;
+    background-color: rgb(166, 167, 168);
+    cursor: pointer;
+}
+ul.Product-component>li{
+    text-overflow: ellipsis;
+  
+
+}
+ul.Product-component>li>img{
+        width: 100%;
+        height: 200px;
+        background-color: grey;
+        padding: auto;
+
+}
+ul.Product-component>li#item-title{
+  
+}

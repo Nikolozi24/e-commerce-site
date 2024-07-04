@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./ProductComponent.css"
 
 import StarIcon from '@mui/icons-material/Star';
@@ -8,11 +8,6 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 // Assuming these are defined in the same file as ProductComponent or imported from another file
 
 // Full Star component
-const Star = () => (
-  <span role="img" aria-label="star">
-    ★
-  </span>
-);
 
 // Half Star component
 
@@ -64,17 +59,18 @@ interface ProductType{
 
 const ProductComponent:React.FC<ProductType> = (props) => {
 
-  
+  const [isFront , setIsFront] = useState(true) 
   const { item} = props
   return (
     <div>
-          <ul className='Product-component'>
+          <ul className='Product-component' onMouseLeave={()=>{ setTimeout(()=> {setIsFront(true)}, 100)}} onMouseEnter={()=>{setIsFront(false)}}>
               <li><img src={item.image} width={100}/></li>
-              <li>{item.title}</li>
-              <li>{item.price}</li>
-              <div>
-                {calculateRatingStars(item.rating.rate)}
-              </div>
+              {  isFront && <li id="item-title">{item?.title}</li>}
+             { isFront && <div>
+                {calculateRatingStars(item?.rating?.rate)}
+              </div>}
+              {isFront && <li>${item?.price}</li>}
+              {!isFront &&<li>{item.description}</li>}
               
           </ul>
         

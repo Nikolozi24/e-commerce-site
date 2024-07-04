@@ -1,7 +1,7 @@
 import React , {useState , useEffect} from 'react'
 import axios from 'axios'
 import "./ProductLIst.css"
-import ProductComponent from '../pages/ProductComponent/ProductComponent.tsx'
+import ProductComponent from '../ProductComponent/ProductComponent.tsx'
 const ProductList = () => {
     const [Products,setProducts]   =useState([{}]);
     useEffect(()=>{
