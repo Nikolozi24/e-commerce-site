@@ -7,13 +7,23 @@ import Row from "react-bootstrap/Row";
 import ProductComponent from "../ProductComp/ProductComponent.jsx"
 import { motion, useScroll } from "framer-motion"
 import Footer from "../Footer";
-
+import GetCookie from "../Utilities/Cookies/GetCookie.tsx"
+import { prettyDOM } from "@testing-library/react";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
+  const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
+  const [person, setPerson] = useState({firstName:""})
   const [Products, setProducts] = useState([]);
 
   useEffect(()=>{
+    const  first = GetCookie("firstname");
+    const jwt = GetCookie("jwt");
+    if(!jwt){
+      navigate('/login')
+    }
+    setPerson({firstName:first})
       const fun = async()=>{
        await fetch('https://fakestoreapi.com/products')
        .then(res=>res.json())
@@ -23,8 +33,8 @@ function Main() {
       
     },[])
     return (
-      <>
-    <Header/>
+     GetCookie("jwt") && <>
+    <Header firstName={person.firstName} />
       <motion.div   />  
       <UncontrolledExample Products={Products}/>
       <Alert style={{background:"black" , color:"white" ,}}variant="dark">

@@ -8,7 +8,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl  from 'react-bootstrap/FormControl'
 import { Form } from 'react-bootstrap'
 import  {Search}  from 'react-bootstrap-icons'
-const Header = () => {
+const Header = ({firstName}) => {
   return (
     <>
 
@@ -44,16 +44,19 @@ const Header = () => {
       <Nav.Item>
         <Nav.Link style={{color:"black"}} eventKey="link-2">Brands</Nav.Link>
       </Nav.Item>
-   <Nav.Item>
-   </Nav.Item>
+
     <Form>
         <InputGroup>
             <Form.Control style={{border:"2px solid hrey",width:"30vw", marginBottom:"20px"}} type="text"  placeholder='Search'/>
             <InputGroup.Text style={{width:"38px", height:"38px"}}><Search/></InputGroup.Text>
         </InputGroup>
     </Form>
+    <Nav.Item style={{marginLeft:"5vw"}}>
+      {firstName}
+
+    </Nav.Item>
     </Nav>
-        
+  
     </div>
   </>
 
