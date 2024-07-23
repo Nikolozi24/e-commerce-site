@@ -1,58 +1,42 @@
+import { useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 
-function UncontrolledExample() {
+function UncontrolledExample ({Products}) {
+  useEffect(()=>{
+
+  },[Products])
+  
   return (
-    <Carousel data-bs-theme="dark" fade={true}>
-      <Carousel.Item  style={{width:"100%" ,height:"400px"}}>
-        <img
-          className="d-block w-100"
-     
-          src="https://images.pexels.com/photos/358457/pexels-photo-358457.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt="First slide"
-        />
-        <Carousel.Caption>
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    <Carousel data-bs-theme="dark" fade={true} >
+
+    {
+          Products?.map(product=>{
+    const {  id,
+      title,
+      price,
+      description,
+      category,
+      image,
+      rating,
+    } = product
+           return      <Carousel.Item className='w-100'  key={id} style={{display:"inline-block", flexDirection:"row",padding:"20px",width:"100%" , background:"#f0f4fa",height:"600px"}}>
+          <img
+          className='m-auto d-block'
+              src={image}
+          style={{opacity:"1.7", background:"none", height:"400px",width:"40%"}}
+          />
+        <Carousel.Caption style={{background:"" , width:"40%", margin:"auto" ,color:"black", }} className=''>
+          <h5>{title}</h5>
+          <p>${price}</p>
+          <Button style={{background:"black", color:"white"}}>Shop Now</Button>
         </Carousel.Caption>
+
       </Carousel.Item>
-      <Carousel.Item style={{width:"100%" ,height:"400px"}} >
-        <img
-          className="d-block w-full"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStYdmYisKvcYDmPrj5V-tBClrjzW6u1hBagg&s"
-          width={10}
-          alt="Second slide"
-        />
-        <Carousel.Caption>
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item style={{width:"100%" ,height:"400px"}}>
-        <img
-          className="d-block w-100"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDSAg07is-bPyv-fYrakROAQQWlLCQu0m4QQ&s"
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-          <h5>Third slide label</h5>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item style={{width:"100%" ,height:"400px"}}>
-        <img
-          className="d-block w-100"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDSAg07is-bPyv-fYrakROAQQWlLCQu0m4QQ&s"
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-          <h5>Third slide label</h5>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
+          }
+          )
+    }
+    
     </Carousel>
   );
 }
