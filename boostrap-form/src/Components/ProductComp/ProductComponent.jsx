@@ -3,7 +3,7 @@ import React from 'react'
 import {StarFill, StarHalf, Star} from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
-
+import "./ProductComponent.css"
 
 
 // Assuming these are defined in the same file as ProductComponent or imported from another file
@@ -50,7 +50,7 @@ const ProductComponent = (props) => {
   
   const { item} = props
   return (
-    <div style={{width:"22%" , height:"500px", padding:"10px", overflow:"hidden", justifyContent:"center", alignItems:"center" ,}} >
+    <div className='Product-component' style={{width:"100%" , height:"500px", padding:"10px", overflow:"hidden", justifyContent:"center", alignItems:"center" ,}} >
           <Card  style={{height:"400px"}}> 
       <Card.Img variant="top" width={50} style={{width:"50%",margin:"auto" ,height:"100px"}} src={item?.image} />
       <Card.Body style={{margin:"auto", display:"flex" , flexDirection:"column"}}>

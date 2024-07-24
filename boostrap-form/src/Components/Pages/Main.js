@@ -9,7 +9,7 @@ import { motion, useScroll } from "framer-motion"
 import Footer from "../Footer";
 import GetCookie from "../Utilities/Cookies/GetCookie.tsx"
 import { prettyDOM } from "@testing-library/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Main() {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ function Main() {
 
        {
         Products?.map( product=>{
-          return <ProductComponent item={product}/>
+          return <li  style={{width:'22%', listStyleType:"none"}}> <Link style={{listStyleType:"none" , textDecoration:"none"}} to={`/${product.id}`}> <ProductComponent item={product}/></Link></li>
         })
        }
     </ul>

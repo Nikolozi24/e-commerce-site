@@ -5,9 +5,9 @@ import Alert from 'react-bootstrap/Alert'
 import Nav from 'react-bootstrap/Nav'
 import  Dropdown from 'react-bootstrap/Dropdown'
 import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl  from 'react-bootstrap/FormControl'
 import { Form } from 'react-bootstrap'
-import  {Search}  from 'react-bootstrap-icons'
+import  {Search ,  Cart4}  from 'react-bootstrap-icons'
+import { Link } from 'react-router-dom'
 const Header = ({firstName}) => {
   return (
     <>
@@ -19,11 +19,11 @@ const Header = ({firstName}) => {
     <div style={{textAlign:"", borderBottom:"1px solid" , height:"50px"}}>
     <Nav 
         style={{width:"auto" , margin:"10px 10vw"}}
-      activeKey="/home"
+      activeKey="/"
       onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
     >
       <Nav.Item style={{display:"flex",alignItems:"center" , height:"100%"}}>
-        <Nav.Link style={{fontSize:"20px", fontFamily:"monospace", color:"black"}} href="/home">Shop.co</Nav.Link>
+        <Link to={"/"}style={{fontSize:"20px", fontFamily:"monospace", color:"black"}} >Shop.co</Link>
       </Nav.Item>
       <Nav.Item>
       <Dropdown>
@@ -53,6 +53,14 @@ const Header = ({firstName}) => {
     </Form>
     <Nav.Item style={{marginLeft:"5vw"}}>
       {firstName}
+
+    </Nav.Item>
+    <Nav.Item style={{marginLeft:"5vw"}}>
+     <Link to={"/cart"}>
+
+      <Cart4/>
+     </Link>
+      
 
     </Nav.Item>
     </Nav>
