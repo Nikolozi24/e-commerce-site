@@ -54,6 +54,8 @@ const handleChange=(e)=>{
   
 }
 return(<>
+  <h1>username: Johnd</h1>
+  <h1>password: m38rmF$</h1>
     <Form style={{width:"50%" , margin:" 320px auto" , padding:"20px", border:"1px solid"}} onSubmit={(e)=>handleSubmit(e)}>
         <h1>Log in</h1>
         <Form.Group controlId="username" >

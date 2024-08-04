@@ -18,9 +18,7 @@ const StoreProvider = ({children}) => {
     useEffect(()=>{
         calCulateSum();
 
-    },[
-        CartObjects
-    ])
+    })
 
 const store = {
     CartObjects, 

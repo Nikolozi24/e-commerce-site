@@ -11,9 +11,10 @@ const {CartObjects , sum} = useStore();
 
     <h1 className='text-center'>your cart</h1>
     <div style={{padding:"20px 4px" , border:"1px solid grey" , margin:"auto" , width:"80%" , borderRadius:"20px"}}>
+      {/* just render products for carts */}
         {
-           CartObjects.map(item=>{
-                return <CartComponent item={item}/>
+           CartObjects.map((item, index)=>{
+                return <CartComponent item={item} index={index}/>
            })
         }
     </div>

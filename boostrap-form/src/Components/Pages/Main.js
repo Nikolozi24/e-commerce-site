@@ -8,14 +8,26 @@ import ProductComponent from "../ProductComp/ProductComponent.jsx"
 import { motion, useScroll } from "framer-motion"
 import Footer from "../Footer";
 import GetCookie from "../Utilities/Cookies/GetCookie.tsx"
-import { prettyDOM } from "@testing-library/react";
+import TypewriterComponent from "typewriter-effect";
+import Classification from "./Classification/Classification.js";
 import { Link, useNavigate } from "react-router-dom";
 
 function Main() {
   const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
   const [person, setPerson] = useState({firstName:""})
-  const [Products, setProducts] = useState([]);
+  const [Products, setProducts] = useState([{
+    id:1,
+  }]);
+  const handleComponentClick = (e) => {
+    // Navigate only if the click was not on the button
+    if (e.target.closest('button')) {
+      // If the click is on a button, do nothing
+      return;
+    }
+    // Navigate to the product detail page
+
+  };
 
   useEffect(()=>{
     const  first = GetCookie("firstname");
@@ -34,9 +46,12 @@ function Main() {
     },[])
     return (
      GetCookie("jwt") && <>
+
     <Header firstName={person.firstName} />
       <motion.div   />  
+    {/*  render Carusel */}
       <UncontrolledExample Products={Products}/>
+      {/* Companies rendering */}
       <Alert style={{background:"black" , color:"white" ,}}variant="dark">
         <Row xs="5" style={{height:"100px",}}>
           <Col style={{ fontFamily:"sans-serif",  display:"flex", alignItems:"center", textAlign:"center" ,fontSize:"20px"}}>VERSAGE</Col>
@@ -47,6 +62,7 @@ function Main() {
         </Row>
 
       </Alert>
+      
        <h1 className="text-center first-letter:uppercase">New Arrivals</h1>
     
     <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, dur:200 }} >
@@ -54,39 +70,31 @@ function Main() {
 
        {
         Products?.map( product=>{
-          return <li  style={{width:'22%', listStyleType:"none"}}> <Link style={{listStyleType:"none" , textDecoration:"none"}} to={`/${product.id}`}> <ProductComponent item={product}/></Link></li>
+          return <li   onClick ={(e)=>{handleComponentClick(e)}} style={{width:'22%', listStyleType:"none"}}> <Link style={{listStyleType:"none" , textDecoration:"none"}} to={`/${product.id}`}> <ProductComponent item={product}/></Link></li>
         })
        }
     </ul>
     </motion.div>
     <hr/>
-    <div style={{margin:"auto", width:"80%" , height:"930px", borderRadius:"20px",backgroundColor:"#f0f0f0"}}> 
-        <h1 className="text-center">BROWSE BY DRESS STYLE</h1>
-      <Row xs="10"   style={{margin:"10px 10%" , width:"100%"}}>
-        <Col xs="4" style={{fontSize:"20px" , background:"white", padding:"20px", display:"flex" , border:"1px solid", borderRadius:"20px"}}>
-        <span>Casual</span>
-        <img  style={{width:"50%"}}  src={Products[0]?.image}></img>          
-             </Col>
-        <Col xs="6" style={{fontSize:"20px" , background:"white", padding:"20px", display:"flex" , border:"1px solid", marginLeft:"20px", borderRadius:"20px"}}>
-          <span>formal</span>
-        <img style={{width:"50%"}}  src={Products[5]?.image}/>
-        </Col>
-      </Row>
-      <Row  xs="10"   style={{margin:"10px 10%" , width:"100%"}}>
-        <Col xs="6" style={{fontSize:"20px" , background:"white", padding:"20px", display:"flex" , border:"1px solid", borderRadius:"20px"}}>
-        <span>Party</span>
-        <img style={{width:"50%"}}    src={Products[7]?.image}></img>          
-             </Col>
-        <Col xs="4" style={{fontSize:"20px" , background:"white", padding:"20px", display:"flex" , border:"1px solid", marginLeft:"20px", borderRadius:"20px"}}>
-          <span>Digital</span>
-        <img style={{width:"50%"}} src={Products[11]?.image}/>
-        </Col>
-      </Row>
-    </div>
-
+  {/* browsing bt dress style  just for testing.
+         now working yet! */}
+    <Classification Products = {Products}/>
+{/*  footer */}
     <Alert style={{margin:"30px auto",marginTop:"30px" , width:"70%", height:"200px", background:"black", color:"white"}}>
       <Row xs="2">
-        <h1>STAY UPTO DATE ABOU OUR LAST OFFERS</h1>
+        <h1>
+      <TypewriterComponent options={{
+        
+        strings:['<span style="color:green">STAY</span> UPTO DATE <span style="color:green">ABOUT</span> OUR LAST OFFERS', 'You can buy anything <span style="color:green">you want</span>'],
+       autoStart:true,
+       loop:true,
+     
+      }}
+      >
+       
+      </TypewriterComponent>
+        </h1>
+
      <Form >
         <Form.Control style={{textAlign:"center"}} type="text" placeholder="example@gmail.com"></Form.Control>
       <Button  variant="light" style={{margin:"20px auto", width:"80%"}}>Subscribe to Newsletter</Button>
